@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  title: API for MontyHall
+  version: 1.0.0
+paths:
+  /api/montyhall/simulate:
+    post:
+      requestBody:
+        description: search for a location (stop point of public transport)
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SimulateGamesRequest"
+      responses:
+        200:
+          description: returns result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimulateGamesResponse"
+
+components:
+  schemas:
+    InputData:
+      description: holds the settings for the games simulation
+      type: object
+      required:
+        - countOfGames
+        - shouldChangeDoor
+      properties:
+        countOfGames:
+          description: number of games to be simulated
+          type: number
+        shouldChangeDoor:
+          description: whether door is to be changed for each game simulation
+          type: boolean
+
+    SimulateGamesRequest:
+      description: holds the values for simulate games request
+      type: object
+      required:
+        - inputData
+      properties:
+        inputData:
+          $ref: "#/components/schemas/InputData"
+
+    OutputData:
+      description: stats for the simulated games
+      type: object
+      required:
+        - percentWon
+        - percentLost
+      properties:
+        percentWon:
+          description: percent of games won
+          type: number
+        percentLost:
+          description: percent of games lost
+          type: number
+
+    SimulateGamesResponse:
+      description: holds the values returned to frontend
+      type: object
+      required:
+        - outputData
+      properties:
+        outputData:
+          $ref: "#/components/schemas/OutputData"

@@ -1,0 +1,9 @@
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/InputData.ts
+models/OutputData.ts
+models/SimulateGamesRequest.ts
+models/SimulateGamesResponse.ts
+models/index.ts
+runtime.ts
